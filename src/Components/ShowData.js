@@ -2,9 +2,17 @@ import React from 'react'
 
 function ShowData(props) {
   return (
-    <div>
-        <h1>{props.list.city}</h1>
-    </div>
+    <>
+        <tbody>
+        <tr>
+            <td>{props.id+1}</td>
+            <td>{props.list.city}</td>
+            <td>{props.list.country}</td>
+        </tr>
+        </tbody>
+        
+        
+    </>
   )
 }
 
