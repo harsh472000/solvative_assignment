@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import ShowData from './ShowData';
 
 
 function Searchbox() {
@@ -22,8 +23,8 @@ function Searchbox() {
           };
           
           axios.request(options).then(function (response) {
-              console.log(response.data);
-              setData(response.data);
+              console.log(response.data.data);
+              setData(response.data.data);
           }).catch(function (error) {
               console.error(error);
           });
@@ -34,6 +35,16 @@ function Searchbox() {
             <input type='text' value={input} onChange={changeHandler}/>
             <button onClick={clickHadler}>Search</button>
         </div>
+        {
+            data.map((value,index)=>{
+                return(
+                    <ShowData 
+                    key={index}
+                    id={index}
+                    list={value}/>
+                )
+            })
+        }
     </div>
   )
 }
