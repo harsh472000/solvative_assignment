@@ -17,10 +17,14 @@ function Searchbox() {
     
     const clickHadler = (e)=>{
         e.preventDefault();
+        if(limit<3 || limit>10)
+        {
+            alert('Please enter value between 3 and 10');
+        }
         var options = {
             method: 'GET',
             url: 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities',
-            params: {countryIds: 'IN', namePrefix: input, limit: limit},
+            params: {countryIds: '', namePrefix: input, limit: limit},
             headers: {
               'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
               'x-rapidapi-key': '4ac5e3352fmshe6ac515ca3b8ccap1f0045jsnf0a504a87bbe'
@@ -39,7 +43,7 @@ function Searchbox() {
         <div className='search'>
             <input type='text' value={input} onChange={changeHandler} placeholder='Enter city name'/>
         
-            <input type='text' value={limit} onChange={changelimitHandler} placeholder='how many data you want to show'/>
+            <input type='number' value={limit} onChange={changelimitHandler} placeholder='Enter Number'/>
             <button onClick={clickHadler} className='btn'>Search</button>
         </div>
         <div className='container'>
@@ -52,24 +56,19 @@ function Searchbox() {
                     <th>County flag</th>
                 </tr>
             </thead>
-                
-                { 
-                    data.map((value,index)=>{
-                        if(value.length>0){  
-                            return(
-                                <h1>No data found</h1>
-                            )   
-                        }else{
-                            return(
-                                <ShowData 
-                                key={index}
-                                id={index}
-                                list={value}/>
-                            ) 
-                        }
-                        
-                    })
+                {
+                    data.length > 0 ? 
+                        data.map((value,index)=>{
+                                return(
+                                    <ShowData 
+                                    key={index}
+                                    id={index}
+                                    list={value}/>
+                                )                
+                        })
+                     : <h1 className='err'>No data found</h1>
                 }
+                
             
         </table>
     </div>
