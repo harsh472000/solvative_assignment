@@ -22,7 +22,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 ### `Demo project`
 
 
-i created this app using functional components
-i added input box for places name and another box for value(how many data you want to show)
+i created this app using functional components.\
+i added input box for places name and another box for value(how many data you want to show).\
 then i fetch api from api and display it
 
